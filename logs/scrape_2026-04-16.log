@@ -1,0 +1,1007 @@
+2026-04-16 17:44:55.947 | INFO     | __main__:main:265 - Starting scrape process
+2026-04-16 17:44:55.960 | INFO     | __main__:main:273 - Loaded 7 target URLs from Excel
+2026-04-16 17:44:56.037 | INFO     | __main__:main:291 - [1/7] Processing https://www.skku.edu/skku/campus/support/welfare_11.do?mode=info&srCategory=L&conspaceCd=10201030&srResId=1&srShowTime=W
+2026-04-16 17:45:13.875 | ERROR    | __main__:main:343 - Failed processing https://www.skku.edu/skku/campus/support/welfare_11.do?mode=info&srCategory=L&conspaceCd=10201030&srResId=1&srShowTime=W: Request timed out.
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           │    │     │              └ <Request [b'POST']>
+           │    │     └ <function ConnectionPool.handle_request at 0x000002167A4F31A0>
+           │    └ <ConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+           └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               │          └ <function HTTPConnection.handle_request at 0x000002167A4F23E0>
+               └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           │    │           │              └ <Request [b'POST']>
+           │    │           └ <function HTTP11Connection.handle_request at 0x000002167A4F1260>
+           │    └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+           └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        │    │                           └ {'request': <Request [b'POST']>}
+        │    └ <function HTTP11Connection._receive_response_headers at 0x000002167A4F14E0>
+        └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            │    │                      └ 5.0
+            │    └ <function HTTP11Connection._receive_event at 0x000002167A4F1620>
+            └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           │    │               └ <function SyncStream.read at 0x000002167A447100>
+           │    └ <httpcore._backends.sync.SyncStream object at 0x000002167AEFEA90>
+           └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}
+         └ <function map_exceptions at 0x000002167A445E40>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167AF05200>
+    │    │   │     │    └ TimeoutError('The read operation timed out')
+    │    │   │     └ <class 'TimeoutError'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000002167A94E740>
+    └ <contextlib._GeneratorContextManager object at 0x000002167AF04310>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ReadTimeout'>
+
+httpcore.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1019, in request
+    response = self._send_request(
+               │    └ <function OpenAI._send_request at 0x0000021678F0D440>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 400, in _send_request
+    return self._send_with_auth_retry(request, stream=stream, **kwargs)
+           │    │                     │               │         └ {}
+           │    │                     │               └ False
+           │    │                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    └ <function OpenAI._send_with_auth_retry at 0x0000021678F0D3A0>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 378, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+                                     │               │         └ {}
+                                     │               └ False
+                                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 947, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           │    │       │    │               │         └ {}
+           │    │       │    │               └ False
+           │    │       │    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    │       └ <function Client.send at 0x000002167772E020>
+           │    └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               │    └ <function Client._send_handling_auth at 0x000002167772E0C0>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               │    └ <function Client._send_handling_redirects at 0x000002167772E160>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               │    │                    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │    └ <function Client._send_single_request at 0x000002167772E200>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               │         │              └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │         └ <function HTTPTransport.handle_request at 0x000002167771B6A0>
+               └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x000002167771B1A0>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167AF04B40>
+    │    │   │     │    └ ReadTimeout(TimeoutError('The read operation timed out'))
+    │    │   │     └ <class 'httpcore.ReadTimeout'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000002167A94E540>
+    └ <contextlib._GeneratorContextManager object at 0x000002167AEFF450>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ 'The read operation timed out'
+          └ <class 'httpx.ReadTimeout'>
+
+httpx.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 350, in <module>
+    main()
+    └ <function main at 0x000002167A4560C0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 299, in main
+    raw_items = extract_menus_with_ai(
+                └ <function extract_menus_with_ai at 0x000002167A455F80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 213, in extract_menus_with_ai
+    response = ai_client.responses.create(model=model, input=prompt, timeout=5.0)
+               │         │         │            │            └ 'Extract cafeteria menu items from the following webpage text and return strict JSON only.\nRules:\n1) Return only valid JSON...
+               │         │         │            └ 'gpt-5-nano'
+               │         │         └ <function Responses.create at 0x000002167AEE9DA0>
+               │         └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\resources\responses\responses.py", line 917, in create
+    return self._post(
+           │    └ <bound method SyncAPIClient.post of <openai.OpenAI object at 0x000002167918A4D0>>
+           └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+           │    │          │    │       │        │            │                  └ openai.Stream[typing.Annotated[typing.Union[openai.types.responses.response_audio_delta_event.ResponseAudioDeltaEvent, openai...
+           │    │          │    │       │        │            └ False
+           │    │          │    │       │        └ FinalRequestOptions(method='post', url='/responses', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=5.0, files=...
+           │    │          │    │       └ <class 'openai.types.responses.response.Response'>
+           │    │          │    └ <function SyncAPIClient.request at 0x0000021678F019E0>
+           │    │          └ <openai.OpenAI object at 0x000002167918A4D0>
+           │    └ ~ResponseT
+           └ <function cast at 0x00000216756D99E0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1037, in request
+    raise APITimeoutError(request=request) from err
+          │                       └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+          └ <class 'openai.APITimeoutError'>
+
+openai.APITimeoutError: Request timed out.
+2026-04-16 17:45:13.907 | INFO     | __main__:main:291 - [2/7] Processing https://www.skku.edu/skku/campus/support/welfare_11.do?mode=info&srCategory=D&conspaceCd=10201030&srResId=1&srShowTime=W
+2026-04-16 17:45:18.676 | INFO     | __main__:main:309 - No menu items extracted: https://www.skku.edu/skku/campus/support/welfare_11.do?mode=info&srCategory=D&conspaceCd=10201030&srResId=1&srShowTime=W
+2026-04-16 17:45:18.677 | INFO     | __main__:main:291 - [3/7] Processing https://www.skku.edu/skku/campus/support/welfare_11.do?mode=info&srCategory=B&conspaceCd=10201030&srResId=1&srShowTime=W
+2026-04-16 17:45:35.602 | ERROR    | __main__:main:343 - Failed processing https://www.skku.edu/skku/campus/support/welfare_11.do?mode=info&srCategory=B&conspaceCd=10201030&srResId=1&srShowTime=W: Request timed out.
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           │    │     │              └ <Request [b'POST']>
+           │    │     └ <function ConnectionPool.handle_request at 0x000002167A4F31A0>
+           │    └ <ConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+           └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               │          └ <function HTTPConnection.handle_request at 0x000002167A4F23E0>
+               └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           │    │           │              └ <Request [b'POST']>
+           │    │           └ <function HTTP11Connection.handle_request at 0x000002167A4F1260>
+           │    └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+           └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        │    │                           └ {'request': <Request [b'POST']>}
+        │    └ <function HTTP11Connection._receive_response_headers at 0x000002167A4F14E0>
+        └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            │    │                      └ 5.0
+            │    └ <function HTTP11Connection._receive_event at 0x000002167A4F1620>
+            └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           │    │               └ <function SyncStream.read at 0x000002167A447100>
+           │    └ <httpcore._backends.sync.SyncStream object at 0x000002167B4B7AD0>
+           └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}
+         └ <function map_exceptions at 0x000002167A445E40>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B357F80>
+    │    │   │     │    └ TimeoutError('The read operation timed out')
+    │    │   │     └ <class 'TimeoutError'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000002167ADDB540>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B4B55D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ReadTimeout'>
+
+httpcore.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1019, in request
+    response = self._send_request(
+               │    └ <function OpenAI._send_request at 0x0000021678F0D440>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 400, in _send_request
+    return self._send_with_auth_retry(request, stream=stream, **kwargs)
+           │    │                     │               │         └ {}
+           │    │                     │               └ False
+           │    │                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    └ <function OpenAI._send_with_auth_retry at 0x0000021678F0D3A0>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 378, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+                                     │               │         └ {}
+                                     │               └ False
+                                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 947, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           │    │       │    │               │         └ {}
+           │    │       │    │               └ False
+           │    │       │    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    │       └ <function Client.send at 0x000002167772E020>
+           │    └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               │    └ <function Client._send_handling_auth at 0x000002167772E0C0>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               │    └ <function Client._send_handling_redirects at 0x000002167772E160>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               │    │                    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │    └ <function Client._send_single_request at 0x000002167772E200>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               │         │              └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │         └ <function HTTPTransport.handle_request at 0x000002167771B6A0>
+               └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x000002167771B1A0>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B354180>
+    │    │   │     │    └ ReadTimeout(TimeoutError('The read operation timed out'))
+    │    │   │     └ <class 'httpcore.ReadTimeout'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000002167ADDB240>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B49B850>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ 'The read operation timed out'
+          └ <class 'httpx.ReadTimeout'>
+
+httpx.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 350, in <module>
+    main()
+    └ <function main at 0x000002167A4560C0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 299, in main
+    raw_items = extract_menus_with_ai(
+                └ <function extract_menus_with_ai at 0x000002167A455F80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 213, in extract_menus_with_ai
+    response = ai_client.responses.create(model=model, input=prompt, timeout=5.0)
+               │         │         │            │            └ 'Extract cafeteria menu items from the following webpage text and return strict JSON only.\nRules:\n1) Return only valid JSON...
+               │         │         │            └ 'gpt-5-nano'
+               │         │         └ <function Responses.create at 0x000002167AEE9DA0>
+               │         └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\resources\responses\responses.py", line 917, in create
+    return self._post(
+           │    └ <bound method SyncAPIClient.post of <openai.OpenAI object at 0x000002167918A4D0>>
+           └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+           │    │          │    │       │        │            │                  └ openai.Stream[typing.Annotated[typing.Union[openai.types.responses.response_audio_delta_event.ResponseAudioDeltaEvent, openai...
+           │    │          │    │       │        │            └ False
+           │    │          │    │       │        └ FinalRequestOptions(method='post', url='/responses', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=5.0, files=...
+           │    │          │    │       └ <class 'openai.types.responses.response.Response'>
+           │    │          │    └ <function SyncAPIClient.request at 0x0000021678F019E0>
+           │    │          └ <openai.OpenAI object at 0x000002167918A4D0>
+           │    └ ~ResponseT
+           └ <function cast at 0x00000216756D99E0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1037, in request
+    raise APITimeoutError(request=request) from err
+          │                       └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+          └ <class 'openai.APITimeoutError'>
+
+openai.APITimeoutError: Request timed out.
+2026-04-16 17:45:35.611 | INFO     | __main__:main:291 - [4/7] Processing https://www.korea.ac.kr/ko/504/subview.do
+2026-04-16 17:45:52.647 | ERROR    | __main__:main:343 - Failed processing https://www.korea.ac.kr/ko/504/subview.do: Request timed out.
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           │    │     │              └ <Request [b'POST']>
+           │    │     └ <function ConnectionPool.handle_request at 0x000002167A4F31A0>
+           │    └ <ConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+           └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               │          └ <function HTTPConnection.handle_request at 0x000002167A4F23E0>
+               └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           │    │           │              └ <Request [b'POST']>
+           │    │           └ <function HTTP11Connection.handle_request at 0x000002167A4F1260>
+           │    └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+           └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        │    │                           └ {'request': <Request [b'POST']>}
+        │    └ <function HTTP11Connection._receive_response_headers at 0x000002167A4F14E0>
+        └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            │    │                      └ 5.0
+            │    └ <function HTTP11Connection._receive_event at 0x000002167A4F1620>
+            └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           │    │               └ <function SyncStream.read at 0x000002167A447100>
+           │    └ <httpcore._backends.sync.SyncStream object at 0x000002167B6140D0>
+           └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}
+         └ <function map_exceptions at 0x000002167A445E40>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B6DD400>
+    │    │   │     │    └ TimeoutError('The read operation timed out')
+    │    │   │     └ <class 'TimeoutError'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000002167ADDBB40>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B6CE850>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ReadTimeout'>
+
+httpcore.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1019, in request
+    response = self._send_request(
+               │    └ <function OpenAI._send_request at 0x0000021678F0D440>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 400, in _send_request
+    return self._send_with_auth_retry(request, stream=stream, **kwargs)
+           │    │                     │               │         └ {}
+           │    │                     │               └ False
+           │    │                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    └ <function OpenAI._send_with_auth_retry at 0x0000021678F0D3A0>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 378, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+                                     │               │         └ {}
+                                     │               └ False
+                                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 947, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           │    │       │    │               │         └ {}
+           │    │       │    │               └ False
+           │    │       │    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    │       └ <function Client.send at 0x000002167772E020>
+           │    └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               │    └ <function Client._send_handling_auth at 0x000002167772E0C0>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               │    └ <function Client._send_handling_redirects at 0x000002167772E160>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               │    │                    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │    └ <function Client._send_single_request at 0x000002167772E200>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               │         │              └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │         └ <function HTTPTransport.handle_request at 0x000002167771B6A0>
+               └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x000002167771B1A0>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B6DE000>
+    │    │   │     │    └ ReadTimeout(TimeoutError('The read operation timed out'))
+    │    │   │     └ <class 'httpcore.ReadTimeout'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000002167ADDB840>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B354AD0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ 'The read operation timed out'
+          └ <class 'httpx.ReadTimeout'>
+
+httpx.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 350, in <module>
+    main()
+    └ <function main at 0x000002167A4560C0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 299, in main
+    raw_items = extract_menus_with_ai(
+                └ <function extract_menus_with_ai at 0x000002167A455F80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 213, in extract_menus_with_ai
+    response = ai_client.responses.create(model=model, input=prompt, timeout=5.0)
+               │         │         │            │            └ 'Extract cafeteria menu items from the following webpage text and return strict JSON only.\nRules:\n1) Return only valid JSON...
+               │         │         │            └ 'gpt-5-nano'
+               │         │         └ <function Responses.create at 0x000002167AEE9DA0>
+               │         └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\resources\responses\responses.py", line 917, in create
+    return self._post(
+           │    └ <bound method SyncAPIClient.post of <openai.OpenAI object at 0x000002167918A4D0>>
+           └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+           │    │          │    │       │        │            │                  └ openai.Stream[typing.Annotated[typing.Union[openai.types.responses.response_audio_delta_event.ResponseAudioDeltaEvent, openai...
+           │    │          │    │       │        │            └ False
+           │    │          │    │       │        └ FinalRequestOptions(method='post', url='/responses', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=5.0, files=...
+           │    │          │    │       └ <class 'openai.types.responses.response.Response'>
+           │    │          │    └ <function SyncAPIClient.request at 0x0000021678F019E0>
+           │    │          └ <openai.OpenAI object at 0x000002167918A4D0>
+           │    └ ~ResponseT
+           └ <function cast at 0x00000216756D99E0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1037, in request
+    raise APITimeoutError(request=request) from err
+          │                       └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+          └ <class 'openai.APITimeoutError'>
+
+openai.APITimeoutError: Request timed out.
+2026-04-16 17:45:52.663 | INFO     | __main__:main:291 - [5/7] Processing https://www.korea.ac.kr/ko/505/subview.do
+2026-04-16 17:46:09.724 | ERROR    | __main__:main:343 - Failed processing https://www.korea.ac.kr/ko/505/subview.do: Request timed out.
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           │    │     │              └ <Request [b'POST']>
+           │    │     └ <function ConnectionPool.handle_request at 0x000002167A4F31A0>
+           │    └ <ConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+           └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               │          └ <function HTTPConnection.handle_request at 0x000002167A4F23E0>
+               └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           │    │           │              └ <Request [b'POST']>
+           │    │           └ <function HTTP11Connection.handle_request at 0x000002167A4F1260>
+           │    └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+           └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        │    │                           └ {'request': <Request [b'POST']>}
+        │    └ <function HTTP11Connection._receive_response_headers at 0x000002167A4F14E0>
+        └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            │    │                      └ 5.0
+            │    └ <function HTTP11Connection._receive_event at 0x000002167A4F1620>
+            └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           │    │               └ <function SyncStream.read at 0x000002167A447100>
+           │    └ <httpcore._backends.sync.SyncStream object at 0x000002167B8BAB10>
+           └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}
+         └ <function map_exceptions at 0x000002167A445E40>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B8C2340>
+    │    │   │     │    └ TimeoutError('The read operation timed out')
+    │    │   │     └ <class 'TimeoutError'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000002167ADDBD40>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B7F7190>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ReadTimeout'>
+
+httpcore.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1019, in request
+    response = self._send_request(
+               │    └ <function OpenAI._send_request at 0x0000021678F0D440>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 400, in _send_request
+    return self._send_with_auth_retry(request, stream=stream, **kwargs)
+           │    │                     │               │         └ {}
+           │    │                     │               └ False
+           │    │                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    └ <function OpenAI._send_with_auth_retry at 0x0000021678F0D3A0>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 378, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+                                     │               │         └ {}
+                                     │               └ False
+                                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 947, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           │    │       │    │               │         └ {}
+           │    │       │    │               └ False
+           │    │       │    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    │       └ <function Client.send at 0x000002167772E020>
+           │    └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               │    └ <function Client._send_handling_auth at 0x000002167772E0C0>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               │    └ <function Client._send_handling_redirects at 0x000002167772E160>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               │    │                    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │    └ <function Client._send_single_request at 0x000002167772E200>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               │         │              └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │         └ <function HTTPTransport.handle_request at 0x000002167771B6A0>
+               └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x000002167771B1A0>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B8C1C40>
+    │    │   │     │    └ ReadTimeout(TimeoutError('The read operation timed out'))
+    │    │   │     └ <class 'httpcore.ReadTimeout'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000002167ADDBE40>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B6DFE10>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ 'The read operation timed out'
+          └ <class 'httpx.ReadTimeout'>
+
+httpx.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 350, in <module>
+    main()
+    └ <function main at 0x000002167A4560C0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 299, in main
+    raw_items = extract_menus_with_ai(
+                └ <function extract_menus_with_ai at 0x000002167A455F80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 213, in extract_menus_with_ai
+    response = ai_client.responses.create(model=model, input=prompt, timeout=5.0)
+               │         │         │            │            └ 'Extract cafeteria menu items from the following webpage text and return strict JSON only.\nRules:\n1) Return only valid JSON...
+               │         │         │            └ 'gpt-5-nano'
+               │         │         └ <function Responses.create at 0x000002167AEE9DA0>
+               │         └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\resources\responses\responses.py", line 917, in create
+    return self._post(
+           │    └ <bound method SyncAPIClient.post of <openai.OpenAI object at 0x000002167918A4D0>>
+           └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+           │    │          │    │       │        │            │                  └ openai.Stream[typing.Annotated[typing.Union[openai.types.responses.response_audio_delta_event.ResponseAudioDeltaEvent, openai...
+           │    │          │    │       │        │            └ False
+           │    │          │    │       │        └ FinalRequestOptions(method='post', url='/responses', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=5.0, files=...
+           │    │          │    │       └ <class 'openai.types.responses.response.Response'>
+           │    │          │    └ <function SyncAPIClient.request at 0x0000021678F019E0>
+           │    │          └ <openai.OpenAI object at 0x000002167918A4D0>
+           │    └ ~ResponseT
+           └ <function cast at 0x00000216756D99E0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1037, in request
+    raise APITimeoutError(request=request) from err
+          │                       └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+          └ <class 'openai.APITimeoutError'>
+
+openai.APITimeoutError: Request timed out.
+2026-04-16 17:46:09.742 | INFO     | __main__:main:291 - [6/7] Processing https://snudorm.snu.ac.kr/foodmenu/
+2026-04-16 17:46:27.292 | ERROR    | __main__:main:343 - Failed processing https://snudorm.snu.ac.kr/foodmenu/: Request timed out.
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           │    │     │              └ <Request [b'POST']>
+           │    │     └ <function ConnectionPool.handle_request at 0x000002167A4F31A0>
+           │    └ <ConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+           └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               │          └ <function HTTPConnection.handle_request at 0x000002167A4F23E0>
+               └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           │    │           │              └ <Request [b'POST']>
+           │    │           └ <function HTTP11Connection.handle_request at 0x000002167A4F1260>
+           │    └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+           └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        │    │                           └ {'request': <Request [b'POST']>}
+        │    └ <function HTTP11Connection._receive_response_headers at 0x000002167A4F14E0>
+        └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            │    │                      └ 5.0
+            │    └ <function HTTP11Connection._receive_event at 0x000002167A4F1620>
+            └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           │    │               └ <function SyncStream.read at 0x000002167A447100>
+           │    └ <httpcore._backends.sync.SyncStream object at 0x000002167B8E4750>
+           └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}
+         └ <function map_exceptions at 0x000002167A445E40>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B9EB900>
+    │    │   │     │    └ TimeoutError('The read operation timed out')
+    │    │   │     └ <class 'TimeoutError'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000002167B8CD940>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B8E5F90>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ReadTimeout'>
+
+httpcore.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1019, in request
+    response = self._send_request(
+               │    └ <function OpenAI._send_request at 0x0000021678F0D440>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 400, in _send_request
+    return self._send_with_auth_retry(request, stream=stream, **kwargs)
+           │    │                     │               │         └ {}
+           │    │                     │               └ False
+           │    │                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    └ <function OpenAI._send_with_auth_retry at 0x0000021678F0D3A0>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 378, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+                                     │               │         └ {}
+                                     │               └ False
+                                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 947, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           │    │       │    │               │         └ {}
+           │    │       │    │               └ False
+           │    │       │    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    │       └ <function Client.send at 0x000002167772E020>
+           │    └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               │    └ <function Client._send_handling_auth at 0x000002167772E0C0>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               │    └ <function Client._send_handling_redirects at 0x000002167772E160>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               │    │                    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │    └ <function Client._send_single_request at 0x000002167772E200>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               │         │              └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │         └ <function HTTPTransport.handle_request at 0x000002167771B6A0>
+               └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x000002167771B1A0>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B9F8040>
+    │    │   │     │    └ ReadTimeout(TimeoutError('The read operation timed out'))
+    │    │   │     └ <class 'httpcore.ReadTimeout'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000002167B8CD740>
+    └ <contextlib._GeneratorContextManager object at 0x000002167B8D0150>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ 'The read operation timed out'
+          └ <class 'httpx.ReadTimeout'>
+
+httpx.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 350, in <module>
+    main()
+    └ <function main at 0x000002167A4560C0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 299, in main
+    raw_items = extract_menus_with_ai(
+                └ <function extract_menus_with_ai at 0x000002167A455F80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 213, in extract_menus_with_ai
+    response = ai_client.responses.create(model=model, input=prompt, timeout=5.0)
+               │         │         │            │            └ 'Extract cafeteria menu items from the following webpage text and return strict JSON only.\nRules:\n1) Return only valid JSON...
+               │         │         │            └ 'gpt-5-nano'
+               │         │         └ <function Responses.create at 0x000002167AEE9DA0>
+               │         └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\resources\responses\responses.py", line 917, in create
+    return self._post(
+           │    └ <bound method SyncAPIClient.post of <openai.OpenAI object at 0x000002167918A4D0>>
+           └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+           │    │          │    │       │        │            │                  └ openai.Stream[typing.Annotated[typing.Union[openai.types.responses.response_audio_delta_event.ResponseAudioDeltaEvent, openai...
+           │    │          │    │       │        │            └ False
+           │    │          │    │       │        └ FinalRequestOptions(method='post', url='/responses', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=5.0, files=...
+           │    │          │    │       └ <class 'openai.types.responses.response.Response'>
+           │    │          │    └ <function SyncAPIClient.request at 0x0000021678F019E0>
+           │    │          └ <openai.OpenAI object at 0x000002167918A4D0>
+           │    └ ~ResponseT
+           └ <function cast at 0x00000216756D99E0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1037, in request
+    raise APITimeoutError(request=request) from err
+          │                       └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+          └ <class 'openai.APITimeoutError'>
+
+openai.APITimeoutError: Request timed out.
+2026-04-16 17:46:27.309 | INFO     | __main__:main:291 - [7/7] Processing https://snuco.snu.ac.kr/foodmenu/
+2026-04-16 17:46:44.715 | ERROR    | __main__:main:343 - Failed processing https://snuco.snu.ac.kr/foodmenu/: Request timed out.
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           │    │     │              └ <Request [b'POST']>
+           │    │     └ <function ConnectionPool.handle_request at 0x000002167A4F31A0>
+           │    └ <ConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+           └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               │          └ <function HTTPConnection.handle_request at 0x000002167A4F23E0>
+               └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           │    │           │              └ <Request [b'POST']>
+           │    │           └ <function HTTP11Connection.handle_request at 0x000002167A4F1260>
+           │    └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+           └ <HTTPConnection ['https://hai5016-foundry-joep.openai.azure.com:443', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        │    │                           └ {'request': <Request [b'POST']>}
+        │    └ <function HTTP11Connection._receive_response_headers at 0x000002167A4F14E0>
+        └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            │    │                      └ 5.0
+            │    └ <function HTTP11Connection._receive_event at 0x000002167A4F1620>
+            └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           │    │               └ <function SyncStream.read at 0x000002167A447100>
+           │    └ <httpcore._backends.sync.SyncStream object at 0x000002167BB91A50>
+           └ <HTTP11Connection ['https://hai5016-foundry-joep.openai.azure.com:443', CLOSED, Request Count: 1]>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}
+         └ <function map_exceptions at 0x000002167A445E40>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167B9F9900>
+    │    │   │     │    └ TimeoutError('The read operation timed out')
+    │    │   │     └ <class 'TimeoutError'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000002167B8CDF40>
+    └ <contextlib._GeneratorContextManager object at 0x000002167BA08390>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ReadTimeout'>
+
+httpcore.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1019, in request
+    response = self._send_request(
+               │    └ <function OpenAI._send_request at 0x0000021678F0D440>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 400, in _send_request
+    return self._send_with_auth_retry(request, stream=stream, **kwargs)
+           │    │                     │               │         └ {}
+           │    │                     │               └ False
+           │    │                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    └ <function OpenAI._send_with_auth_retry at 0x0000021678F0D3A0>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_client.py", line 378, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+                                     │               │         └ {}
+                                     │               └ False
+                                     └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 947, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           │    │       │    │               │         └ {}
+           │    │       │    │               └ False
+           │    │       │    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+           │    │       └ <function Client.send at 0x000002167772E020>
+           │    └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+           └ <openai.OpenAI object at 0x000002167918A4D0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               │    └ <function Client._send_handling_auth at 0x000002167772E0C0>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               │    └ <function Client._send_handling_redirects at 0x000002167772E160>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               │    │                    └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │    └ <function Client._send_single_request at 0x000002167772E200>
+               └ <openai._base_client.SyncHttpxClientWrapper object at 0x000002167917A110>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               │         │              └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+               │         └ <function HTTPTransport.handle_request at 0x000002167771B6A0>
+               └ <httpx.HTTPTransport object at 0x00000216791C0D50>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x000002167771B1A0>
+  File "C:\Users\joejo\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+    │    │   │     │    │      └ <traceback object at 0x000002167BBA5D80>
+    │    │   │     │    └ ReadTimeout(TimeoutError('The read operation timed out'))
+    │    │   │     └ <class 'httpcore.ReadTimeout'>
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000002167B8CC240>
+    └ <contextlib._GeneratorContextManager object at 0x000002167BA17790>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ 'The read operation timed out'
+          └ <class 'httpx.ReadTimeout'>
+
+httpx.ReadTimeout: The read operation timed out
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 350, in <module>
+    main()
+    └ <function main at 0x000002167A4560C0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 299, in main
+    raw_items = extract_menus_with_ai(
+                └ <function extract_menus_with_ai at 0x000002167A455F80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\scrape.py", line 213, in extract_menus_with_ai
+    response = ai_client.responses.create(model=model, input=prompt, timeout=5.0)
+               │         │         │            │            └ 'Extract cafeteria menu items from the following webpage text and return strict JSON only.\nRules:\n1) Return only valid JSON...
+               │         │         │            └ 'gpt-5-nano'
+               │         │         └ <function Responses.create at 0x000002167AEE9DA0>
+               │         └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+               └ <openai.OpenAI object at 0x000002167918A4D0>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\resources\responses\responses.py", line 917, in create
+    return self._post(
+           │    └ <bound method SyncAPIClient.post of <openai.OpenAI object at 0x000002167918A4D0>>
+           └ <openai.resources.responses.responses.Responses object at 0x000002167A464050>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+           │    │          │    │       │        │            │                  └ openai.Stream[typing.Annotated[typing.Union[openai.types.responses.response_audio_delta_event.ResponseAudioDeltaEvent, openai...
+           │    │          │    │       │        │            └ False
+           │    │          │    │       │        └ FinalRequestOptions(method='post', url='/responses', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=5.0, files=...
+           │    │          │    │       └ <class 'openai.types.responses.response.Response'>
+           │    │          │    └ <function SyncAPIClient.request at 0x0000021678F019E0>
+           │    │          └ <openai.OpenAI object at 0x000002167918A4D0>
+           │    └ ~ResponseT
+           └ <function cast at 0x00000216756D99E0>
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\openai\_base_client.py", line 1037, in request
+    raise APITimeoutError(request=request) from err
+          │                       └ <Request('POST', 'https://hai5016-foundry-joep.openai.azure.com/openai/v1/responses')>
+          └ <class 'openai.APITimeoutError'>
+
+openai.APITimeoutError: Request timed out.
+2026-04-16 17:46:44.734 | INFO     | __main__:main:346 - Finished. Saved 0 items to results\menus-2026-04-16.jsonl
