@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 import urllib.error
@@ -11,6 +12,42 @@ from loguru import logger
 
 # Load environment variables so this module also works in scripts and schedulers.
 load_dotenv()
+
+
+def _resolve_exchange_rate_api_url() -> str:
+    """Build a valid exchangerate-api URL from environment variables."""
+    api_url = os.getenv("EXCHANGE_RATE_API_URL", "").strip()
+    api_key = os.getenv("EXCHANGE_RATE_API_KEY", "").strip()
+
+    # Prefer the explicit full URL when provided.
+    if api_url:
+        return api_url
+
+    # Handle accidental full URL values stored in EXCHANGE_RATE_API_KEY.
+    if api_key.startswith("https://") or api_key.startswith("http://"):
+        return api_key
+
+    if not api_key:
+        logger.error("Missing EXCHANGE_RATE_API_KEY (or EXCHANGE_RATE_API_URL) in environment")
+        raise RuntimeError(
+            "Missing EXCHANGE_RATE_API_KEY (or EXCHANGE_RATE_API_URL) in environment"
+        )
+
+    return f"https://v6.exchangerate-api.com/v6/{api_key}/latest/KRW"
+
+
+def _mask_exchange_rate_api_url(url: str) -> str:
+    """Return a redacted API URL safe for logs."""
+    marker = "/v6/"
+    if marker not in url:
+        return url
+
+    prefix, suffix = url.split(marker, 1)
+    parts = suffix.split("/", 1)
+    if len(parts) != 2:
+        return f"{prefix}{marker}***/"
+
+    return f"{prefix}{marker}***/{parts[1]}"
 
 
 def _configure_logger() -> None:
@@ -38,14 +75,8 @@ def _fetch_exchange_rate_payload() -> dict:
     """Fetch raw exchange-rate API payload for KRW base."""
     logger.info("Fetching latest KRW exchange-rate payload")
 
-    # Read the API key from the .env file.
-    api_key = os.getenv("EXCHANGE_RATE_API_KEY")
-    if not api_key:
-        logger.error("Missing EXCHANGE_RATE_API_KEY in .env")
-        raise RuntimeError("Missing EXCHANGE_RATE_API_KEY in .env")
-
-    # Ask the exchange-rate service for all rates using KRW as the base currency.
-    url = f"https://v6.exchangerate-api.com/v6/{api_key}/latest/KRW"
+    # Build the API URL from environment variables.
+    url = _resolve_exchange_rate_api_url()
     request = urllib.request.Request(
         url,
         headers={"User-Agent": "Mozilla/5.0 (compatible; hai5016-project/1.0)"},
@@ -54,8 +85,18 @@ def _fetch_exchange_rate_payload() -> dict:
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             data = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as error:
+        error_body = error.read().decode("utf-8", errors="replace")
+        safe_url = _mask_exchange_rate_api_url(url)
+        logger.error(
+            f"Exchange-rate API returned HTTP {error.code} for {safe_url}: {error_body}"
+        )
+        raise RuntimeError(
+            "Failed to fetch exchange rates. "
+            "Check EXCHANGE_RATE_API_KEY / EXCHANGE_RATE_API_URL in GitHub secrets."
+        ) from error
     except urllib.error.URLError as error:
-        logger.exception("Failed while calling exchange-rate API")
+        logger.error(f"Failed while calling exchange-rate API: {error}")
         raise RuntimeError(f"Failed to fetch exchange rates: {error}") from error
 
     # Surface API-level failures clearly.
@@ -388,5 +429,9 @@ def get_fx(currency: str) -> float:
 if __name__ == "__main__":
     _configure_logger()
     logger.info("exchange_rates.py started")
-    upserted_rows = save_daily_rates_to_supabase()
-    logger.info(f"Saved {upserted_rows} FX rows to Supabase.")
+    try:
+        upserted_rows = save_daily_rates_to_supabase()
+        logger.info(f"Saved {upserted_rows} FX rows to Supabase.")
+    except Exception as error:
+        logger.error(f"exchange_rates.py failed: {error}")
+        sys.exit(1)

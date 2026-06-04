@@ -185,3 +185,21 @@ psycopg.errors.InvalidColumnReference: there is no unique or exclusion constrain
 2026-06-04 15:32:37 | INFO | Starting PostgreSQL upsert transaction
 2026-06-04 15:32:37 | INFO | PostgreSQL upsert completed for 166 rows
 2026-06-04 15:32:37 | INFO | Saved 166 FX rows to Supabase.
+2026-06-04 15:35:14 | INFO | exchange_rates.py started
+2026-06-04 15:35:14 | INFO | Preparing daily FX upsert
+2026-06-04 15:35:14 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:35:15 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:35:15 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:35:15 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:35:15 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:35:15 | INFO | PostgreSQL upsert completed for 166 rows
+2026-06-04 15:35:15 | INFO | Saved 166 FX rows to Supabase.
+2026-06-04 15:41:48 | INFO | exchange_rates.py started
+2026-06-04 15:41:48 | INFO | Preparing daily FX upsert
+2026-06-04 15:41:48 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:41:48 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:41:48 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:41:48 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:41:48 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:41:49 | INFO | PostgreSQL upsert completed for 166 rows
+2026-06-04 15:41:49 | INFO | Saved 166 FX rows to Supabase.
