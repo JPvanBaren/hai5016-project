@@ -302,7 +302,22 @@ def _save_rows_via_postgres(records: list[dict], connection_string: str) -> int:
 
     logger.info("Starting PostgreSQL upsert transaction")
 
-    sql = """
+    # Some Supabase tables might not have a unique constraint for conflict-targeted upserts.
+    # Update existing rows first, then insert only rows that are still missing.
+    update_sql = """
+    UPDATE public.fx_rates_daily_cache
+    SET
+        rate = %(rate)s,
+        fetched_at = %(fetched_at)s,
+        raw_response = %(raw_response)s::jsonb,
+        updated_at = now()
+    WHERE provider = %(provider)s
+      AND base_code = %(base_code)s
+      AND quote_code = %(quote_code)s
+      AND cache_date = %(cache_date)s
+    """
+
+    insert_sql = """
     INSERT INTO public.fx_rates_daily_cache (
         provider,
         base_code,
@@ -312,7 +327,7 @@ def _save_rows_via_postgres(records: list[dict], connection_string: str) -> int:
         fetched_at,
         raw_response
     )
-    VALUES (
+    SELECT
         %(provider)s,
         %(base_code)s,
         %(quote_code)s,
@@ -320,13 +335,14 @@ def _save_rows_via_postgres(records: list[dict], connection_string: str) -> int:
         %(cache_date)s,
         %(fetched_at)s,
         %(raw_response)s::jsonb
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM public.fx_rates_daily_cache
+        WHERE provider = %(provider)s
+          AND base_code = %(base_code)s
+          AND quote_code = %(quote_code)s
+          AND cache_date = %(cache_date)s
     )
-    ON CONFLICT (provider, base_code, quote_code, cache_date)
-    DO UPDATE SET
-        rate = EXCLUDED.rate,
-        fetched_at = EXCLUDED.fetched_at,
-        raw_response = EXCLUDED.raw_response,
-        updated_at = now()
     """
 
     payload_rows = []
@@ -346,7 +362,8 @@ def _save_rows_via_postgres(records: list[dict], connection_string: str) -> int:
     try:
         with psycopg.connect(connection_string) as connection:
             with connection.cursor() as cursor:
-                cursor.executemany(sql, payload_rows)
+                cursor.executemany(update_sql, payload_rows)
+                cursor.executemany(insert_sql, payload_rows)
             connection.commit()
     except Exception as error:
         logger.exception("PostgreSQL upsert failed")

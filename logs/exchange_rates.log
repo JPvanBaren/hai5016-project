@@ -1,0 +1,187 @@
+2026-06-04 15:25:04 | INFO | exchange_rates.py started
+2026-06-04 15:25:04 | INFO | Preparing daily FX upsert
+2026-06-04 15:25:04 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:25:05 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:25:05 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:25:05 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:25:37 | INFO | exchange_rates.py started
+2026-06-04 15:25:37 | INFO | Preparing daily FX upsert
+2026-06-04 15:25:37 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:25:37 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:25:37 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:25:37 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:25:38 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:25:38 | ERROR | PostgreSQL upsert failed
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 374, in <module>
+    upserted_rows = save_daily_rates_to_supabase()
+                    └ <function save_daily_rates_to_supabase at 0x0000020FB6E7A660>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 101, in save_daily_rates_to_supabase
+    return _save_rows_with_available_supabase_method(records)
+           │                                         └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+           └ <function _save_rows_with_available_supabase_method at 0x0000020FB6E99A80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 150, in _save_rows_with_available_supabase_method
+    return _save_rows_via_postgres(
+           └ <function _save_rows_via_postgres at 0x0000020FB6E99DA0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 349, in _save_rows_via_postgres
+    cursor.executemany(sql, payload_rows)
+    │      │           │    └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+    │      │           └ '\n    INSERT INTO public.fx_rates_daily_cache (\n        provider,\n        base_code,\n        quote_code,\n        rate,\n...
+    │      └ <function Cursor.executemany at 0x0000020FB7D77C40>
+    └ <psycopg.Cursor [closed] [BAD] at 0x20fb7deab00>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\psycopg\cursor.py", line 148, in executemany
+    raise ex.with_traceback(None)
+
+psycopg.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+2026-06-04 15:26:29 | INFO | exchange_rates.py started
+2026-06-04 15:26:29 | INFO | Preparing daily FX upsert
+2026-06-04 15:26:29 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:26:30 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:26:30 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:26:30 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:26:30 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:26:30 | ERROR | PostgreSQL upsert failed
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 374, in <module>
+    upserted_rows = save_daily_rates_to_supabase()
+                    └ <function save_daily_rates_to_supabase at 0x000001AC9358A660>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 101, in save_daily_rates_to_supabase
+    return _save_rows_with_available_supabase_method(records)
+           │                                         └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+           └ <function _save_rows_with_available_supabase_method at 0x000001AC935A9A80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 150, in _save_rows_with_available_supabase_method
+    return _save_rows_via_postgres(
+           └ <function _save_rows_via_postgres at 0x000001AC935A9DA0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 349, in _save_rows_via_postgres
+    cursor.executemany(sql, payload_rows)
+    │      │           │    └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+    │      │           └ '\n    INSERT INTO public.fx_rates_daily_cache (\n        provider,\n        base_code,\n        quote_code,\n        rate,\n...
+    │      └ <function Cursor.executemany at 0x000001AC94403060>
+    └ <psycopg.Cursor [closed] [BAD] at 0x1ac944e4400>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\psycopg\cursor.py", line 148, in executemany
+    raise ex.with_traceback(None)
+
+psycopg.errors.UndefinedTable: relation "public.fx_rates_daily_cache" does not exist
+LINE 2:     INSERT INTO public.fx_rates_daily_cache (
+                        ^
+2026-06-04 15:27:46 | INFO | exchange_rates.py started
+2026-06-04 15:27:46 | INFO | Preparing daily FX upsert
+2026-06-04 15:27:46 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:27:46 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:27:46 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:27:46 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:27:47 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:27:47 | ERROR | PostgreSQL upsert failed
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 374, in <module>
+    upserted_rows = save_daily_rates_to_supabase()
+                    └ <function save_daily_rates_to_supabase at 0x000001C1D3B4A660>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 101, in save_daily_rates_to_supabase
+    return _save_rows_with_available_supabase_method(records)
+           │                                         └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+           └ <function _save_rows_with_available_supabase_method at 0x000001C1D3B69A80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 150, in _save_rows_with_available_supabase_method
+    return _save_rows_via_postgres(
+           └ <function _save_rows_via_postgres at 0x000001C1D3B69DA0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 349, in _save_rows_via_postgres
+    cursor.executemany(sql, payload_rows)
+    │      │           │    └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+    │      │           └ '\n    INSERT INTO public.fx_rates_daily_cache (\n        provider,\n        base_code,\n        quote_code,\n        rate,\n...
+    │      └ <function Cursor.executemany at 0x000001C1D4A23060>
+    └ <psycopg.Cursor [closed] [BAD] at 0x1c1d4b04400>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\psycopg\cursor.py", line 148, in executemany
+    raise ex.with_traceback(None)
+
+psycopg.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+2026-06-04 15:28:42 | INFO | exchange_rates.py started
+2026-06-04 15:28:42 | INFO | Preparing daily FX upsert
+2026-06-04 15:28:42 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:28:42 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:28:42 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:28:42 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:28:42 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:28:42 | ERROR | PostgreSQL upsert failed
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates (1).py", line 374, in <module>
+    upserted_rows = save_daily_rates_to_supabase()
+                    └ <function save_daily_rates_to_supabase at 0x000002871AAAA660>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates (1).py", line 101, in save_daily_rates_to_supabase
+    return _save_rows_with_available_supabase_method(records)
+           │                                         └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+           └ <function _save_rows_with_available_supabase_method at 0x000002871AAC9A80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates (1).py", line 150, in _save_rows_with_available_supabase_method
+    return _save_rows_via_postgres(
+           └ <function _save_rows_via_postgres at 0x000002871AAC9DA0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\exchangerates (1).py", line 349, in _save_rows_via_postgres
+    cursor.executemany(sql, payload_rows)
+    │      │           │    └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+    │      │           └ '\n    INSERT INTO public.fx_rates_daily_cache (\n        provider,\n        base_code,\n        quote_code,\n        rate,\n...
+    │      └ <function Cursor.executemany at 0x000002871B963060>
+    └ <psycopg.Cursor [closed] [BAD] at 0x2871ba44400>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\psycopg\cursor.py", line 148, in executemany
+    raise ex.with_traceback(None)
+
+psycopg.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+2026-06-04 15:31:23 | INFO | exchange_rates.py started
+2026-06-04 15:31:23 | INFO | Preparing daily FX upsert
+2026-06-04 15:31:23 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:31:23 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:31:23 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:31:23 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:31:23 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:31:24 | ERROR | PostgreSQL upsert failed
+Traceback (most recent call last):
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 374, in <module>
+    upserted_rows = save_daily_rates_to_supabase()
+                    └ <function save_daily_rates_to_supabase at 0x00000287B334A660>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 101, in save_daily_rates_to_supabase
+    return _save_rows_with_available_supabase_method(records)
+           │                                         └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+           └ <function _save_rows_with_available_supabase_method at 0x00000287B3369A80>
+
+  File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 150, in _save_rows_with_available_supabase_method
+    return _save_rows_via_postgres(
+           └ <function _save_rows_via_postgres at 0x00000287B3369DA0>
+
+> File "c:\Users\joejo\Developer\hai5016-project\exchangerates.py", line 349, in _save_rows_via_postgres
+    cursor.executemany(sql, payload_rows)
+    │      │           │    └ [{'provider': 'exchangerate-api', 'base_code': 'KRW', 'quote_code': 'KRW', 'rate': 1.0, 'cache_date': '2026-06-04', 'fetched_...
+    │      │           └ '\n    INSERT INTO public.fx_rates_daily_cache (\n        provider,\n        base_code,\n        quote_code,\n        rate,\n...
+    │      └ <function Cursor.executemany at 0x00000287B41F3060>
+    └ <psycopg.Cursor [closed] [BAD] at 0x287b42d4400>
+
+  File "C:\Users\joejo\Developer\hai5016-project\.venv\Lib\site-packages\psycopg\cursor.py", line 148, in executemany
+    raise ex.with_traceback(None)
+
+psycopg.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+2026-06-04 15:32:36 | INFO | exchange_rates.py started
+2026-06-04 15:32:36 | INFO | Preparing daily FX upsert
+2026-06-04 15:32:36 | INFO | Fetching latest KRW exchange-rate payload
+2026-06-04 15:32:37 | INFO | Exchange-rate payload fetched successfully
+2026-06-04 15:32:37 | INFO | Built 166 FX rows for upsert
+2026-06-04 15:32:37 | INFO | Using Supabase PostgreSQL upsert path
+2026-06-04 15:32:37 | INFO | Starting PostgreSQL upsert transaction
+2026-06-04 15:32:37 | INFO | PostgreSQL upsert completed for 166 rows
+2026-06-04 15:32:37 | INFO | Saved 166 FX rows to Supabase.
