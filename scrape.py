@@ -16,8 +16,10 @@ Pipeline for each valid source in campus_menu_sources:
 
 import hashlib
 import os
+import re
 from datetime import date, timezone, datetime
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 
 import psycopg
 from psycopg.rows import dict_row
@@ -64,7 +66,31 @@ def get_connection_string() -> str:
     conn_str = os.getenv("SUPABASE_CONNECTION_STRING")
     if not conn_str:
         raise EnvironmentError("SUPABASE_CONNECTION_STRING must be set in .env")
-    return conn_str
+    return normalize_connection_string(conn_str)
+
+
+def normalize_connection_string(conn_str: str) -> str:
+    # Ensure literal '%' in URL-style passwords are percent-encoded for psycopg parsing.
+    if not conn_str.startswith(("postgres://", "postgresql://")):
+        return conn_str
+
+    parsed = urlsplit(conn_str)
+    if "@" not in parsed.netloc:
+        return conn_str
+
+    userinfo, hostinfo = parsed.netloc.rsplit("@", 1)
+    if ":" not in userinfo:
+        return conn_str
+
+    username, password = userinfo.split(":", 1)
+    escaped_password = re.sub(r"%(?![0-9A-Fa-f]{2})", "%25", password)
+    if escaped_password == password:
+        return conn_str
+
+    normalized_netloc = f"{username}:{escaped_password}@{hostinfo}"
+    return urlunsplit(
+        (parsed.scheme, normalized_netloc, parsed.path, parsed.query, parsed.fragment)
+    )
 
 
 def load_valid_sources(conn_str: str) -> list[dict]:
